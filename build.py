@@ -29,7 +29,7 @@ PERSON = {"@type": "Person", "@id": SITE + "/about-the-author#person", "name": "
           "jobTitle": "Security strategist, author, and advisor", "url": SITE + "/about-the-author",
           "knowsAbout": ["Corporate security", "AI governance", "Risk management", "Physical security",
                          "Intelligence", "Board risk oversight", "Supply chain security"],
-          "sameAs": [NEWS]}  # TODO: add LinkedIn and other profile URLs
+          "sameAs": ["https://www.linkedin.com/in/timothyreed1/", NEWS]}
 ORG = {"@type": "Organization", "@id": SITE + "/isz-press#org", "name": "ISZ Press",
        "alternateName": "Ice Station Zebra Press", "url": SITE + "/isz-press", "email": EMAIL}
 BOOK = {"@type": "Book", "@id": SITE + "/#book", "name": BOOK_TITLE, "alternateName": "Signals in the Noise",
@@ -312,7 +312,8 @@ PAGES["/about-the-author"] = page("/about-the-author", "Timothy E. Reed, CPP | A
 <section class="prose"><h2>About Tim Reed</h2>
 <p>Tim Reed, CPP, is a global corporate security leader with more than 26 years of experience in physical security, intelligence, risk management, robotics, and AI. As Director of Security at Aurora, Tim shapes enterprise protection programs and leads innovation where risk and technology meet.</p>
 <p>He advises boards, enterprises, and startups, and works with ISZ Press to advance the security field. An author, speaker, and strategist, Tim is sought after for executive briefings and guidance on the future of security.</p>
-<p>He is the author of <a href="/about-the-book"><em>Signals in the Noise: Security, Technology, and the Hidden Patterns of Modern Risk</em></a> and writes <a href="{NEWS}" target="_blank" rel="noopener">The Northern Signal</a> newsletter.</p></section>""",
+<p>He is the author of <a href="/about-the-book"><em>Signals in the Noise: Security, Technology, and the Hidden Patterns of Modern Risk</em></a> and writes <a href="{NEWS}" target="_blank" rel="noopener">The Northern Signal</a> newsletter.</p>
+<p><a href="https://www.linkedin.com/in/timothyreed1/" target="_blank" rel="noopener me">Connect with Tim on LinkedIn</a></p></section>""",
     [{**PERSON, "image": FU + "CRJLY02NNZkDawjIaEfeqhC6I.jpeg"}, {"@type": "ProfilePage", "mainEntity": {"@id": PERSON["@id"]}}, BOOK],
     og_img="CRJLY02NNZkDawjIaEfeqhC6I.jpeg", name="About the Author")
 
