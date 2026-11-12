@@ -1,6 +1,6 @@
 # Signals in the Noise
 
-> Signals in the Noise: Security, Technology, and the Hidden Patterns of Modern Risk is a book by Timothy E. Reed, CPP, published by ISZ Press (Ice Station Zebra Press) in 2026. It is a field guide for CSOs, CISOs, board directors, and technology founders on separating real risk signals from AI-driven noise, governing algorithmic risk, and making clearer security decisions. About 38,000 words. ISBN 979-8993667614.
+> Signals in the Noise: Security, Technology, and the Hidden Patterns of Modern Risk is a book by Timothy E. Reed, CPP, published by ISZ Press (Ice Station Zebra Press) in 2026. It is a field guide for CSOs, CISOs, board directors, and technology founders on separating real risk signals from AI-driven noise, governing algorithmic risk, and making clearer security decisions. About 38,000 words. Available as eBook (ISBN 979-8-9936676-0-7), paperback (979-8-9936676-1-4), hardcover (979-8-9936676-2-1), and audiobook (979-8-9936676-3-8).
 
 Core argument: AI increases visibility but not clarity. Clarity, not technology, is the essential tool leaders need for security and resilience. Disciplined thinking and strong signal detection cut through algorithmic confusion.
 

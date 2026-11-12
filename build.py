@@ -35,12 +35,16 @@ ORG = {"@type": "Organization", "@id": SITE + "/isz-press#org", "name": "ISZ Pre
 BOOK = {"@type": "Book", "@id": SITE + "/#book", "name": BOOK_TITLE, "alternateName": "Signals in the Noise",
         "author": {"@id": PERSON["@id"]}, "publisher": {"@id": ORG["@id"]},
         "image": FU + "3ZMCU7NKW0huxlM1k6EkWJE45nI.jpg", "url": SITE + "/about-the-book",
-        "isbn": "9798993667614", "inLanguage": "en", "datePublished": "2026", "wordCount": 38000,
+        "inLanguage": "en", "datePublished": "2026", "wordCount": 38000,
         "description": "A field guide for security leaders, boards, and executives on finding real signals in AI-driven noise, governing algorithmic risk, and building organizational clarity.",
         "about": ["AI governance", "Security leadership", "Risk management", "Board oversight", "Signal detection"],
         "audience": {"@type": "Audience", "audienceType": "CSOs, CISOs, board directors, technology founders and operators"},
-        "offers": {"@type": "Offer", "url": BUY, "availability": "https://schema.org/InStock"}}
-        # TODO: add "bookFormat"/"workExample" entries per format (ebook, paperback, audiobook) with their own ISBNs
+        "offers": {"@type": "Offer", "url": BUY, "availability": "https://schema.org/InStock"},
+        "workExample": [
+            {"@type": "Book", "bookFormat": "https://schema.org/EBook", "isbn": "9798993667607", "name": "Signals in the Noise (eBook)"},
+            {"@type": "Book", "bookFormat": "https://schema.org/Paperback", "isbn": "9798993667614", "name": "Signals in the Noise (Paperback)"},
+            {"@type": "Book", "bookFormat": "https://schema.org/Hardcover", "isbn": "9798993667621", "name": "Signals in the Noise (Hardcover)"},
+            {"@type": ["Book", "Audiobook"], "bookFormat": "https://schema.org/AudiobookFormat", "isbn": "9798993667638", "name": "Signals in the Noise (Audiobook)"}]}
 
 def esc(s): return html.escape(s, quote=True)
 
@@ -159,7 +163,7 @@ PAGES["/"] = page("/", "Signals in the Noise | A Field Guide to AI, Security, an
 # ---------- ABOUT THE BOOK ----------
 f_about, s_about = faq([
     ("How long is Signals in the Noise?", "About 38,000 words, written at a grade 12 reading level for busy professionals."),
-    ("What is the ISBN for Signals in the Noise?", "ISBN 979-8993667614."),
+    ("What formats is Signals in the Noise available in?", "Four formats: eBook (ISBN 979-8-9936676-0-7), paperback (ISBN 979-8-9936676-1-4), hardcover (ISBN 979-8-9936676-2-1), and audiobook (ISBN 979-8-9936676-3-8)."),
     ("What will I learn from the book?", "How to identify real signals, design organizational clarity, avoid algorithmic traps, build cognitive resilience, and govern AI-driven complexity."),
     ("What topics do the chapters cover?", "Information overload, weaponized ambiguity, the blind spots of machine analysis, modern tradecraft, behavioral signatures, cognitive countermeasures, signal architecture, ethics, and emerging risks."),
 ])
