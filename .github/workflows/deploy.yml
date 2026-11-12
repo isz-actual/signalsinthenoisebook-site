@@ -33,7 +33,7 @@ jobs:
           fi
       - name: Build
         env:
-          BASE: /signalsinthenoisebook-site  # github.io preview path. Set to "" when the custom domain goes live.
+          BASE: ""  # custom domain is live. For a github.io preview, set to /signalsinthenoisebook-site.
         run: python build.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
