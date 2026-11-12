@@ -1,0 +1,25 @@
+# Signals in the Noise
+
+> Signals in the Noise: Security, Technology, and the Hidden Patterns of Modern Risk is a book by Timothy E. Reed, CPP, published by ISZ Press (Ice Station Zebra Press) in 2026. It is a field guide for CSOs, CISOs, board directors, and technology founders on separating real risk signals from AI-driven noise, governing algorithmic risk, and making clearer security decisions. About 38,000 words.
+
+Core argument: AI increases visibility but not clarity. Clarity, not technology, is the essential tool leaders need for security and resilience. Disciplined thinking and strong signal detection cut through algorithmic confusion.
+
+Chapters include The Overload Condition, Weaponized Ambiguity, Machine's Blind Spots, Tradecraft Reborn, Behavioral Signatures, and Cognitive Countermeasures. Later chapters cover signal architecture, ethics, and emerging risks.
+
+The author, Timothy E. Reed, CPP, is a corporate security leader with more than 26 years of experience in physical security, intelligence, risk management, robotics, and AI. He advises boards, enterprises, and startups, and writes The Northern Signal newsletter.
+
+## Pages
+
+- [About the Book](https://www.signalsinthenoisebook.com/about-the-book): core idea, what readers learn, format, and structure
+- [Inside the Book](https://www.signalsinthenoisebook.com/inside-the-book): chapter summaries
+- [Boards & Leaders](https://www.signalsinthenoisebook.com/boards-leaders): Board Edition PDF, board briefings, offsites, risk architecture reviews
+- [About the Author](https://www.signalsinthenoisebook.com/about-the-author): biography of Timothy E. Reed, CPP
+- [Advisory](https://www.signalsinthenoisebook.com/advisory): keynotes, AI strategy sessions, signal workshops
+- [Newsletter & Podcast](https://www.signalsinthenoisebook.com/newsletter-podcast): The Northern Signal and The Ice Flow Podcast
+- [ISZ Press](https://www.signalsinthenoisebook.com/isz-press): the publisher
+
+## Buy and contact
+
+- [Buy the book](https://books2read.com/signals-in-the-noise): Amazon, other retailers, and bulk orders
+- [Book a call](https://calendly.com/tim-reed-isz/30min): speaking, board briefings, advisory
+- Email: contact@iszpress.com
