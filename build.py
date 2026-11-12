@@ -136,25 +136,25 @@ f_home, s_home = faq([
 PAGES["/"] = page("/", "Signals in the Noise | A Field Guide to AI, Security, and Modern Risk",
     "Signals in the Noise by Timothy E. Reed, CPP is a field guide for security leaders and boards on cutting through AI-driven noise, governing algorithmic risk, and deciding with clarity.",
     f"""<section class="hero">
-<img src="{FU}LmYKwtB6thLI4GB21Bfg8rgLxI.jpeg" alt="Signals in the Noise: Security, Technology, and the Hidden Patterns of Modern Risk, book cover art" width="1200" height="720" fetchpriority="high">
+<img src="{FU}fdq8kmXa78ZPRx8HYiVwNlec.png" alt="Signals in the Noise: Security, Technology, and the Hidden Patterns of Modern Risk, book cover art" width="1200" height="720" fetchpriority="high">
 <h1>Signals in the Noise: Security, Technology, and the Hidden Patterns of Modern Risk</h1>
 <p class="lede">A field guide for security leaders and boards by Timothy E. Reed, CPP. AI increases visibility but not clarity. This book shows leaders how to find the signals that matter.</p>
 <div class="btns">{btn(BUY, "Get the Book")}{btn("/inside-the-book", "Explore Chapters", True)}</div>
 </section>
 <section><h2>The problem leaders face</h2>
-{cards([("vb8rys5VY7qXrIzCRcjxy4jDpf8.jpeg", "Information overload.", "AI increases visibility, but not clarity. Leaders need stronger filtering."),
-        ("1EIPdmLc4WBBlbcjz6pUGmeCYQ.jpeg", "Operational blind spots.", "Automation outpaces governance across supply chains, identity, and IP pathways."),
-        ("EtKNdzuOonNYlOdnyDpcGRtL5U.jpeg", "Competing realities.", "Synthetic data, algorithmic confidence, and fractured trust complicate decisions.")])}
+{cards([("LmYKwtB6thLI4GB21Bfg8rgLxI.jpeg", "Information overload.", "AI increases visibility, but not clarity. Leaders need stronger filtering."),
+        ("vb8rys5VY7qXrIzCRcjxy4jDpf8.jpeg", "Operational blind spots.", "Automation outpaces governance across supply chains, identity, and IP pathways."),
+        ("1EIPdmLc4WBBlbcjz6pUGmeCYQ.jpeg", "Competing realities.", "Synthetic data, algorithmic confidence, and fractured trust complicate decisions.")])}
 </section>
 <section><h2>Who the book is for</h2>
-{cards([("XMnUkuqrkos2jrKL0oK1he52u4.jpeg", "CSOs & CISOs.", "Security leaders facing new risk frontiers."),
-        ("Frc3e5PAm3ZqIaJJQEM8NTJzszM.jpeg", "Boards & Directors.", "Governance, oversight, and risk strategy."),
-        ("fdq8kmXa78ZPRx8HYiVwNlec.png", "Tech founders & operators.", "Building the future with clarity and discipline.")])}
+{cards([("EtKNdzuOonNYlOdnyDpcGRtL5U.jpeg", "CSOs & CISOs.", "Security leaders facing new risk frontiers."),
+        ("XMnUkuqrkos2jrKL0oK1he52u4.jpeg", "Boards & Directors.", "Governance, oversight, and risk strategy."),
+        ("Frc3e5PAm3ZqIaJJQEM8NTJzszM.jpeg", "Tech founders & operators.", "Building the future with clarity and discipline.")])}
 </section>
 {f_home}
 {cta("Explore chapters.", "Preview the full table of contents and concepts.", btn("/inside-the-book", "Explore Chapters"))}""",
     [BOOK, PERSON, ORG, {"@type": "WebSite", "@id": SITE + "/#site", "url": SITE + "/", "name": "Signals in the Noise", "publisher": {"@id": ORG["@id"]}}, s_home],
-    og_img="LmYKwtB6thLI4GB21Bfg8rgLxI.jpeg", name="Home")
+    og_img="fdq8kmXa78ZPRx8HYiVwNlec.png", name="Home")
 
 # ---------- ABOUT THE BOOK ----------
 f_about, s_about = faq([
