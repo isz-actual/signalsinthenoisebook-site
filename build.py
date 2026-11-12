@@ -3,10 +3,10 @@
 Edit page content in PAGES below, run `python3 build.py`, output goes to _site/.
 GitHub Actions builds and deploys on every push to main.
 """
-import json, os, html, shutil
+import json, os, html, shutil, re
 
 SITE = "https://www.signalsinthenoisebook.com"
-FU = SITE + "/assets/img/"  # images live in /assets/img (downloaded from Framer by fetch_images.py)
+FU = SITE + "/assets/img/"  # originals in source-images/, web sizes made by optimize_images.py
 BUY = "https://books2read.com/signals-in-the-noise"
 CAL = "https://calendly.com/tim-reed-isz/30min"
 NEWS = "https://www.thenorthernsignal.com/"
@@ -27,14 +27,20 @@ FOOT = [("About", [("/about-the-book", "About the Book"), ("/inside-the-book", "
 PERSON = {"@type": "Person", "@id": SITE + "/about-the-author#person", "name": "Timothy E. Reed",
           "honorificSuffix": "CPP", "alternateName": "Tim Reed",
           "jobTitle": "Security strategist, author, and advisor", "url": SITE + "/about-the-author",
+          "hasCredential": [
+              {"@type": "EducationalOccupationalCredential", "name": "Certified Protection Professional (CPP)", "credentialCategory": "Professional certification", "recognizedBy": {"@type": "Organization", "name": "ASIS International"}},
+              {"@type": "EducationalOccupationalCredential", "name": "Six Sigma Green Belt", "credentialCategory": "Professional certification"},
+              {"@type": "EducationalOccupationalCredential", "name": "B.S. in Criminal Justice", "credentialCategory": "degree", "recognizedBy": {"@type": "CollegeOrUniversity", "name": "Purdue University Global"}}],
+          "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Purdue University Global"}, {"@type": "CollegeOrUniversity", "name": "Georgetown University"}, {"@type": "CollegeOrUniversity", "name": "Northwestern University"}],
+          "worksFor": {"@type": "Organization", "name": "Reed Group Consulting", "url": "https://reedgroup.ai"},
           "knowsAbout": ["Corporate security", "AI governance", "Risk management", "Physical security",
                          "Intelligence", "Board risk oversight", "Supply chain security"],
-          "sameAs": ["https://www.linkedin.com/in/timothyreed1/", NEWS]}
+          "sameAs": ["https://www.linkedin.com/in/timothyreed1/", "https://reedgroup.ai", NEWS]}
 ORG = {"@type": "Organization", "@id": SITE + "/isz-press#org", "name": "ISZ Press",
        "alternateName": "Ice Station Zebra Press", "url": SITE + "/isz-press", "email": EMAIL}
 BOOK = {"@type": "Book", "@id": SITE + "/#book", "name": BOOK_TITLE, "alternateName": "Signals in the Noise",
         "author": {"@id": PERSON["@id"]}, "publisher": {"@id": ORG["@id"]},
-        "image": FU + "3ZMCU7NKW0huxlM1k6EkWJE45nI.jpg", "url": SITE + "/about-the-book",
+        "image": FU + "fdq8kmXa78ZPRx8HYiVwNlec.png", "url": SITE + "/about-the-book",
         "inLanguage": "en", "datePublished": "2026", "wordCount": 38000,
         "description": "A field guide for security leaders, boards, and executives on finding real signals in AI-driven noise, governing algorithmic risk, and building organizational clarity.",
         "about": ["AI governance", "Security leadership", "Risk management", "Board oversight", "Signal detection"],
@@ -79,7 +85,7 @@ def faq(qs):
 def cta(h, p, b):
     return f'<section class="cta"><h2>{esc(h)}</h2><p>{esc(p)}</p>{b}</section>'
 
-def page(path, title, desc, body, schema=(), og_img="3ZMCU7NKW0huxlM1k6EkWJE45nI.jpg", name=None):
+def page(path, title, desc, body, schema=(), og_img="fdq8kmXa78ZPRx8HYiVwNlec.png", name=None):
     url = SITE + (path if path != "/" else "/")
     nav = "".join(f'<a href="{h}"{" aria-current=\"page\"" if h == path else ""}>{esc(t)}</a>' for h, t in NAV)
     foot = "".join(f'<div><h2 class="fh">{c}</h2>' + "".join(
@@ -106,8 +112,12 @@ def page(path, title, desc, body, schema=(), og_img="3ZMCU7NKW0huxlM1k6EkWJE45nI
 <meta name="twitter:title" content="{esc(title)}">
 <meta name="twitter:description" content="{esc(desc)}">
 <meta name="twitter:image" content="{FU}{og_img}">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<meta name="theme-color" content="#ffffff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/style.css">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM summary">
 {ld(*graph)}
@@ -140,7 +150,7 @@ f_home, s_home = faq([
 PAGES["/"] = page("/", "Signals in the Noise | A Field Guide to AI, Security, and Modern Risk",
     "Signals in the Noise by Timothy E. Reed, CPP is a field guide for security leaders and boards on cutting through AI-driven noise, governing algorithmic risk, and deciding with clarity.",
     f"""<section class="hero">
-<img src="{FU}fdq8kmXa78ZPRx8HYiVwNlec.png" alt="Signals in the Noise: Security, Technology, and the Hidden Patterns of Modern Risk, book cover art" width="1200" height="720" fetchpriority="high">
+<img src="{FU}fdq8kmXa78ZPRx8HYiVwNlec.png" alt="Cover of Signals in the Noise: Security, Technology, and the Hidden Patterns of Modern Risk by Timothy E. Reed, CPP" width="1200" height="720" fetchpriority="high">
 <h1>Signals in the Noise: Security, Technology, and the Hidden Patterns of Modern Risk</h1>
 <p class="lede">A field guide for security leaders and boards by Timothy E. Reed, CPP. AI increases visibility but not clarity. This book shows leaders how to find the signals that matter.</p>
 <div class="btns">{btn(BUY, "Get the Book")}{btn("/inside-the-book", "Explore Chapters", True)}</div>
@@ -170,7 +180,7 @@ f_about, s_about = faq([
 PAGES["/about-the-book"] = page("/about-the-book", "About the Book | Signals in the Noise by Timothy E. Reed",
     "What Signals in the Noise covers: why AI creates noise instead of clarity, how leaders detect real risk signals, and how the book moves from information overload to human tradecraft.",
     f"""<section class="hero split">
-<img src="{FU}3ZMCU7NKW0huxlM1k6EkWJE45nI.jpg" alt="Signals in the Noise book cover" width="600" height="900" fetchpriority="high">
+<img src="{FU}3ZMCU7NKW0huxlM1k6EkWJE45nI.jpg" alt="A single clear signal waveform rising over a dark, frozen landscape" width="600" height="900" fetchpriority="high">
 <div><p class="eyebrow">About the Book</p>
 <h1>Signals in the Noise</h1>
 <p class="lede">A modern field guide for leaders.</p>
@@ -262,6 +272,12 @@ PAGES["/newsletter-podcast"] = page("/newsletter-podcast", "Newsletter & Podcast
     og_img="PYpSHMq8ECCtw8wxYhjUYwnQ6UM.png", name="Newsletter & Podcast")
 
 # ---------- ADVISORY ----------
+f_adv, s_adv = faq([
+    ("What topics does Tim Reed speak on?", "AI risk and governance, board oversight of algorithmic systems, signal architecture and operational clarity, and modern corporate security. Sessions draw on Signals in the Noise and more than 26 years leading security programs."),
+    ("What session formats are available?", "Virtual sessions of 60 to 90 minutes, half-day and full-day sessions, and multi-session engagements. Every session is tailored to the organization's executive and board needs."),
+    ("Who are the sessions for?", "Boards of directors, executive teams, CSOs and CISOs, and technology founders and operators responsible for security, risk, or AI governance decisions."),
+    ("How do I book a session?", "Book a 30-minute call through this site to discuss your goals, audience, and format."),
+])
 PAGES["/advisory"] = page("/advisory", "Advisory | Keynotes, Board Briefings, and AI Strategy Sessions",
     "Book Timothy E. Reed, CPP for board briefings, keynotes, AI strategy sessions, and signal workshops. Virtual, half-day, full-day, and multi-session formats.",
     f"""<section class="hero"><h1>Briefings, keynotes, and strategic advisory sessions.</h1>
@@ -274,9 +290,10 @@ PAGES["/advisory"] = page("/advisory", "Advisory | Keynotes, Board Briefings, an
         ("Tpwd0oysHmSfEO8VpgJldjx09UQ.jpeg", "Session formats.", "Virtual 60 to 90 minutes, half-day, full-day, and multi-session engagements."),
         ("i0hOEDWj9sHO9IMT7EUz5uvv8.jpeg", "Tailored delivery.", "Every session is built around your organization's executive and board needs.")])}
 </section>
+{f_adv}
 {cta("Request an advisory call", "Connect to discuss your leadership needs.", btn(CAL, "Book Now"))}""",
     [{"@type": "Service", "name": "Security and AI governance advisory", "provider": {"@id": PERSON["@id"]},
-      "serviceType": ["Keynote speaking", "Board briefings", "AI strategy sessions", "Signal workshops"]}, PERSON],
+      "serviceType": ["Keynote speaking", "Board briefings", "AI strategy sessions", "Signal workshops"]}, PERSON, s_adv],
     og_img="fhCIfZWRBqZ7HKt9055HjQbE3A.jpeg", name="Advisory")
 
 # ---------- ISZ PRESS ----------
@@ -315,7 +332,9 @@ PAGES["/about-the-author"] = page("/about-the-author", "Timothy E. Reed, CPP | A
 <div class="btns">{btn(CAL, "Book Tim for a Briefing")}</div></div></section>
 <section class="prose"><h2>About Tim Reed</h2>
 <p>Tim Reed, CPP, is a global corporate security leader with more than 26 years of experience in physical security, intelligence, risk management, robotics, and AI. As Director of Security at Aurora, Tim shapes enterprise protection programs and leads innovation where risk and technology meet.</p>
-<p>He advises boards, enterprises, and startups, and works with ISZ Press to advance the security field. An author, speaker, and strategist, Tim is sought after for executive briefings and guidance on the future of security.</p>
+<p>He advises boards, enterprises, and startups through <a href="https://reedgroup.ai" target="_blank" rel="noopener">Reed Group Consulting</a>, his AI governance advisory practice, and works with ISZ Press to advance the security field. An author, speaker, and strategist, Tim is sought after for executive briefings and guidance on the future of security.</p>
+<h2>Credentials</h2>
+<ul class="creds"><li>Certified Protection Professional (CPP), ASIS International</li><li>Six Sigma Green Belt</li><li>B.S. in Criminal Justice, Purdue University Global</li><li>Certificates from Georgetown University and Northwestern University</li></ul>
 <p>He is the author of <a href="/about-the-book"><em>Signals in the Noise: Security, Technology, and the Hidden Patterns of Modern Risk</em></a> and writes <a href="{NEWS}" target="_blank" rel="noopener">The Northern Signal</a> newsletter.</p>
 <p><a href="https://www.linkedin.com/in/timothyreed1/" target="_blank" rel="noopener me">Connect with Tim on LinkedIn</a></p></section>""",
     [{**PERSON, "image": FU + "CRJLY02NNZkDawjIaEfeqhC6I.jpeg"}, {"@type": "ProfilePage", "mainEntity": {"@id": PERSON["@id"]}}, BOOK],
@@ -331,7 +350,7 @@ PRIV = [
  ("Newsletter communications (beehiiv)", ["If you subscribe to our newsletter, your subscription data is processed through beehiiv as our email service provider. You can opt out at any time using the unsubscribe link in any email. After you unsubscribe, we may retain limited information to honor your opt-out and maintain suppression lists."]),
  ("How we share information", ["We share information only as needed to run the Site and newsletter, including with hosting and infrastructure providers, which may process log data such as IP address and page views; beehiiv, for newsletter delivery and analytics; service providers that help us operate the Site and communications under appropriate confidentiality and security obligations; and government authorities or other parties when required by law or to protect rights, safety, and security.",
    "We do not sell personal information. We do not use your personal information for cross-context behavioral advertising. If that changes, we will update this policy and provide required choices and disclosures."]),
- ("Cookies and similar technologies", ["The Site does not set advertising cookies. Our hosting provider may keep standard server logs. Embedded third-party content, such as booking or podcast links, is governed by those providers’ policies. You can control cookies through your browser settings."]),
+ ("Cookies and similar technologies", ["The Site does not set advertising cookies. Our hosting provider may keep standard server logs. Fonts and images are served from this Site, not from third parties. Links to other services, such as booking or podcast pages, are governed by those providers\u2019 policies. You can control cookies through your browser settings."]),
  ("Data retention", ["Newsletter data is retained until you unsubscribe, plus a reasonable period for suppression and compliance. Inquiry data is retained as long as necessary to respond and maintain business records. Log data is retained according to provider settings."]),
  ("Your privacy rights", ["Depending on where you live, you may have rights to access, correct, delete, or object to certain processing of your personal information. To submit a request, contact us using the information below. We will take reasonable steps to verify your request. If you are in the EEA or UK, you may also lodge a complaint with your local data protection authority."]),
  ("Children’s privacy", ["The Site and newsletter are not intended for children under 13. We do not knowingly collect personal information from children. If you believe a child has provided personal information, contact us and we will delete it."]),
@@ -350,11 +369,29 @@ PAGES["/404"] = page("/404", "Page not found | Signals in the Noise", "The page 
 
 # ---------- write ----------
 BASE = os.environ.get("BASE", "")
+DIMS = json.load(open(os.path.join(ROOT, "assets", "img", "dims.json")))
+IMG_RE = re.compile(r'<img src="' + re.escape(FU) + r'([A-Za-z0-9]+)\.(?:png|jpe?g)"([^>]*?) width="\d+" height="\d+"')
+
+def responsive_images(doc):
+    """Swap each original image for WebP with a 800/1600 srcset and true dimensions; point social/schema refs at the -og.jpg."""
+    def sub(m):
+        stem, attrs = m.group(1), m.group(2)
+        w, h = DIMS[stem]
+        base = BASE + "/assets/img/" + stem
+        card = 'class="card"' in doc[max(0, m.start() - 40):m.start()]
+        split = 'hero split' in doc[max(0, m.start() - 40):m.start()]
+        sizes = "(max-width: 720px) 100vw, 330px" if card else ("(max-width: 720px) 240px, 320px" if split else "(max-width: 1040px) 100vw, 1000px")
+        srcset = f' srcset="{base}-800.webp 800w, {base}.webp {w}w" sizes="{sizes}"' if w > 800 else ""
+        return (f'<img src="{base}.webp"{srcset}'
+                f'{attrs} width="{w}" height="{h}" decoding="async"')
+    doc = IMG_RE.sub(sub, doc)
+    return re.sub(re.escape(FU) + r'([A-Za-z0-9]+)\.(?:png|jpe?g)', lambda m: FU + m.group(1) + "-og.jpg", doc)
+
 shutil.rmtree(OUT, ignore_errors=True)
 shutil.copytree(os.path.join(ROOT, "static"), OUT)
 shutil.copytree(os.path.join(ROOT, "assets", "img"), os.path.join(OUT, "assets", "img"))
 for path, doc in PAGES.items():
-    doc = doc.replace('src="' + SITE + '/assets/img/', 'src="' + BASE + '/assets/img/')
+    doc = responsive_images(doc)
     if BASE:
         doc = doc.replace('href="/', f'href="{BASE}/')
     fn = "index.html" if path == "/" else ("404.html" if path == "/404" else path.strip("/") + "/index.html")
