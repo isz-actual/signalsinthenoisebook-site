@@ -159,7 +159,7 @@ PAGES["/"] = page("/", "Signals in the Noise | A Field Guide to AI, Security, an
 # ---------- ABOUT THE BOOK ----------
 f_about, s_about = faq([
     ("How long is Signals in the Noise?", "About 38,000 words, written at a grade 12 reading level for busy professionals."),
-    ("What is the ISBN for Signals in the Noise?", "ISBN 979-8-9936676-1-4."),
+    ("What is the ISBN for Signals in the Noise?", "ISBN 979-8993667614."),
     ("What will I learn from the book?", "How to identify real signals, design organizational clarity, avoid algorithmic traps, build cognitive resilience, and govern AI-driven complexity."),
     ("What topics do the chapters cover?", "Information overload, weaponized ambiguity, the blind spots of machine analysis, modern tradecraft, behavioral signatures, cognitive countermeasures, signal architecture, ethics, and emerging risks."),
 ])
