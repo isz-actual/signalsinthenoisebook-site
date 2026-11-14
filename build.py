@@ -112,6 +112,7 @@ def page(path, title, desc, body, schema=(), og_img="fdq8kmXa78ZPRx8HYiVwNlec.pn
 <meta name="twitter:title" content="{esc(title)}">
 <meta name="twitter:description" content="{esc(desc)}">
 <meta name="twitter:image" content="{FU}{og_img}">
+<meta name="google-site-verification" content="ZD7Lgbj8P5iiE5sdUAJoBw2l1GXL9pqMvQju1SX5XOY">
 <meta name="theme-color" content="#ffffff">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
