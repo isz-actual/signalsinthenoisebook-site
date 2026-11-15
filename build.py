@@ -8,6 +8,7 @@ import json, os, html, shutil, re
 SITE = "https://www.signalsinthenoisebook.com"
 FU = SITE + "/assets/img/"  # originals in source-images/, web sizes made by optimize_images.py
 BUY = "https://books2read.com/signals-in-the-noise"
+SIGNED = "https://shop.isz.one/collections/book"
 CAL = "https://calendly.com/tim-reed-isz/30min"
 NEWS = "https://www.thenorthernsignal.com/"
 POD = "https://open.spotify.com/episode/7EvJzyGvM8SOkeVFV3g3KO"
@@ -45,7 +46,7 @@ BOOK = {"@type": "Book", "@id": SITE + "/#book", "name": BOOK_TITLE, "alternateN
         "description": "A field guide for security leaders, boards, and executives on finding real signals in AI-driven noise, governing algorithmic risk, and building organizational clarity.",
         "about": ["AI governance", "Security leadership", "Risk management", "Board oversight", "Signal detection"],
         "audience": {"@type": "Audience", "audienceType": "CSOs, CISOs, board directors, technology founders and operators"},
-        "offers": {"@type": "Offer", "url": BUY, "availability": "https://schema.org/InStock"},
+        "offers": [{"@type": "Offer", "url": BUY, "availability": "https://schema.org/InStock"}, {"@type": "Offer", "url": SIGNED, "availability": "https://schema.org/InStock", "description": "Signed paperback and hardcover, shipped by the author", "seller": {"@type": "Organization", "name": "Ice Station Zebra"}}],
         "workExample": [
             {"@type": "Book", "bookFormat": "https://schema.org/EBook", "isbn": "9798993667607", "name": "Signals in the Noise (eBook)"},
             {"@type": "Book", "bookFormat": "https://schema.org/Paperback", "isbn": "9798993667614", "name": "Signals in the Noise (Paperback)"},
@@ -146,7 +147,7 @@ f_home, s_home = faq([
     ("Who should read it?",
      "CSOs, CISOs, board directors, and technology founders and operators who are responsible for security, risk, or AI governance decisions."),
     ("Where can I buy the book?",
-     "Signals in the Noise is available from Amazon and other major retailers. Bulk orders are also available."),
+     "Signals in the Noise is available from Amazon and other major retailers. Signed paperback and hardcover copies are sold directly by the author through the Ice Station Zebra shop. Bulk orders are also available."),
 ])
 PAGES["/"] = page("/", "Signals in the Noise | A Field Guide to AI, Security, and Modern Risk",
     "Signals in the Noise by Timothy E. Reed, CPP is a field guide for security leaders and boards on cutting through AI-driven noise, governing algorithmic risk, and deciding with clarity.",
@@ -154,7 +155,7 @@ PAGES["/"] = page("/", "Signals in the Noise | A Field Guide to AI, Security, an
 <img src="{FU}fdq8kmXa78ZPRx8HYiVwNlec.png" alt="Cover of Signals in the Noise: Security, Technology, and the Hidden Patterns of Modern Risk by Timothy E. Reed, CPP" width="1200" height="720" fetchpriority="high">
 <h1>Signals in the Noise: Security, Technology, and the Hidden Patterns of Modern Risk</h1>
 <p class="lede">A field guide for security leaders and boards by Timothy E. Reed, CPP. AI increases visibility but not clarity. This book shows leaders how to find the signals that matter.</p>
-<div class="btns">{btn(BUY, "Get the Book")}{btn("/inside-the-book", "Explore Chapters", True)}</div>
+<div class="btns">{btn(BUY, "Get the Book")}{btn(SIGNED, "Signed Copies", True)}{btn("/inside-the-book", "Explore Chapters", True)}</div>
 </section>
 <section><h2>The problem leaders face</h2>
 {cards([("LmYKwtB6thLI4GB21Bfg8rgLxI.jpeg", "Information overload.", "AI increases visibility, but not clarity. Leaders need stronger filtering."),
@@ -202,7 +203,7 @@ PAGES["/about-the-book"] = page("/about-the-book", "About the Book | Signals in 
 <p>The book moves from the challenge of information overload through ambiguity, operational blind spots, and algorithmic pitfalls toward effective human tradecraft. It takes readers step by step from confusion to mastery.</p>
 <p>Later chapters cover signal architecture, ethics, and emerging risks. Together they form a roadmap from algorithmic fog to actionable clarity for security leaders and decision makers.</p></section>
 {f_about}
-{cta("Buy the book", "Available from Amazon and major retailers. Bulk orders welcome.", btn(BUY, "Amazon / Retailers / Bulk Orders"))}""",
+{cta("Buy the book", "Available from Amazon and major retailers. Bulk orders welcome. Signed paperback and hardcover copies ship directly from the author.", btn(BUY, "Amazon / Retailers / Bulk Orders") + btn(SIGNED, "Signed Copies", True))}""",
     [BOOK, PERSON, ORG, s_about], name="About the Book")
 
 # ---------- INSIDE THE BOOK ----------
